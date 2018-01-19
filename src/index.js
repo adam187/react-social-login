@@ -264,6 +264,7 @@ const SocialLogin = (WrappedComponent) => class SocialLogin extends Component {
     // Don’t forward unneeded props
     const originalProps = omit(this.props, [
       'appId',
+      'version',
       'scope',
       'autoCleanUri',
       'autoLogin',
