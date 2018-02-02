@@ -141,6 +141,15 @@ const SocialLogin = (WrappedComponent) => class SocialLogin extends Component {
     }
   }
 
+  /* custom solution */
+  shouldLock () {
+    if (this.props.provider === 'linkedin') {
+      return false
+    }
+
+    return true
+  }
+
   /**
    * Triggers login process.
    */
@@ -148,7 +157,8 @@ const SocialLogin = (WrappedComponent) => class SocialLogin extends Component {
     const doLogin = () => {
       this.setState((prevState) => ({
         ...prevState,
-        isFetching: true
+        // isFetching: true
+        isFetching: this.shouldLock() // custom solution
       }), () => {
         this.sdk.login().then(this.onLoginSuccess, this.onLoginFailure)
       })
